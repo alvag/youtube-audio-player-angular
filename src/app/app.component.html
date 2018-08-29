@@ -1,0 +1,67 @@
+<div class="container mt-5">
+
+	<div class="input-group mb-3">
+		<input (keydown.enter)="searchVideo()" [(ngModel)]="search" type="text" class="form-control" placeholder="Buscar...">
+		<div class="input-group-append">
+			<button (click)="searchVideo()" class="btn btn-secondary" type="submit" id="button-addon2">Buscar</button>
+		</div>
+	</div>
+
+
+	<div class="column add-bottom">
+		<div id="mainwrap">
+			<div id="nowPlay" [ngStyle]="{'display': existsTracks() ? 'block' : 'none'}">
+				<span id="npAction">{{npAction}}</span><span id="npTitle">{{npTitle}}</span>
+			</div>
+			<div id="audiowrap" [ngStyle]="{'display': existsTracks() ? 'block' : 'none'}">
+				<div id="audio0">
+					<audio id="audio1" preload controls>Tu navegador no soporta la reproducción de audio! 😢</audio>
+				</div>
+				<div id="tracks">
+					<a id="btnPrev" (click)="prev()">&larr;</a><a id="btnNext" (click)="next()">&rarr;</a>
+				</div>
+			</div>
+			<div id="plwrap" #scroll (scroll)="scrollHandler($event)">
+				<ul id="plList" style="padding-left: 0">
+					<li *ngFor="let track of tracks; let i = index" (click)="playTrack(i)">
+						<div class="plItem">
+							<span class="plNum">{{i+1}}. </span>
+							<span class="plTitle">{{track.name}}</span>
+							<span class="plLength" *ngIf="track.duration">{{track.duration}}</span>
+							<span class="plLength" *ngIf="!track.duration"><i class="fas fa-spinner fa-spin"></i></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="column add-bottom center">
+
+	</div>
+</div>
+
+
+<!--
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Audio Player</a>
+</nav>
+
+<div class="container mt-5">
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Nombre del video">
+    <div class="input-group-append">
+      <button (click)="search($event)" class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+    </div>
+  </div>
+
+  <audio controls>
+    <source src="https://r2-&#45;&#45;sn-ja5gv2x-aphk.googlevideo.com/videoplayback?dur=269.121&c=WEB&fvip=2&lmt=1535353150395707&pcm2cms=yes&clen=4477112&key=yt6&mime=audio%2Fwebm&gir=yes&keepalive=yes&requiressl=yes&initcwndbps=688750&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Ckeepalive%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpcm2cms%2Cpl%2Crequiressl%2Csource%2Cexpire&signature=DE22BEE0009047D6C0188A021576C9B9CAD6C672.1C145CF0C4801D4D54F5E1A7D057F85F8687BD85&source=youtube&txp=5511222&itag=251&expire=1535492349&id=o-ANDwXmHe8pZpQbNqQ3FdHEENMwFXUZKMwttXfRkS6lp6&mn=sn-ja5gv2x-aphk%2Csn-hp57knz6&mm=31%2C29&ip=190.117.193.156&ms=au%2Crdu&ei=nGyFW-3-N-TYj-8P5NC_8AQ&mt=1535470639&pl=25&mv=m&ipbits=0&ratebypass=yes" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<footer>
+  Max Alva - {{ year }}
+</footer>
+-->
