@@ -9,7 +9,7 @@ export class DownloadService {
     constructor( private http: HttpClient ) { }
 
     searchVideo( search: string, nextPage: string ) {
-        let url = `http://192.168.1.5:3000/search/${search}`;
+        let url = `http://localhost:3000/search/${search}`;
         if ( nextPage ) {
             url = `${url}/${nextPage}`;
         }
@@ -17,7 +17,7 @@ export class DownloadService {
     }
 
     getData( videoId: string ) {
-        const url = `http://192.168.1.5:3000/download/${videoId}`;
+        const url = `http://localhost:3000/download/${videoId}`;
         return this.http.get( url );
     }
 }
